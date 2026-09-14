@@ -24,7 +24,9 @@ public class JwtAuthenticationFilter implements GlobalFilter{
             return chain.filter(exchange);
         }
 
-        String authorization = exchange.getRequest().getHeaders().getFirst("Authorization");
+        String authorization = exchange.getRequest()
+                .getHeaders()
+                .getFirst("Authorization");
 
         // JWT not provided
         if (authorization == null || !authorization.startsWith("Bearer ")) {
