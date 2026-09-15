@@ -14,14 +14,14 @@ public class JwtService {
     @Value("${jwt.secret-key}")
     private String secretKey;
 
-    private SecretKey getsecretKey(){
+    private SecretKey getSecretKey(){
        return Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
     }
 
     public boolean isValidToken(String token){
         try {
             Jwts.parser()
-                    .verifyWith(getsecretKey())
+                    .verifyWith(getSecretKey())
                     .build()
                     .parseSignedClaims(token);
 

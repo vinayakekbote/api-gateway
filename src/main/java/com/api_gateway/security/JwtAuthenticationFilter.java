@@ -8,16 +8,19 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 @Component
 public class JwtAuthenticationFilter implements GlobalFilter{
-    private final JwtService jwtService;
+
+
+  private final JwtService jwtService;
 
     public JwtAuthenticationFilter(JwtService jwtService) {
+        System.out.println("🔥 JwtAuthenticationFilter CREATED");
         this.jwtService = jwtService;
     }
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-
         String path = exchange.getRequest().getURI().getPath();
+        System.out.println("🔥 JwtAuthenticationFilter CALLED");
 
         // Public APIs
         if (path.startsWith("/auth/")) {
