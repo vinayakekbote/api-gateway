@@ -7,16 +7,19 @@ spring:
 
   cloud:
     gateway:
-      routes:
-        - id: auth-service
-          uri: lb://AUTH-SERVICE
-          predicates:
-            - Path=/auth/**
+      server:
+        webflux:
+          routes:
 
-        - id: wallet-service
-          uri: lb://WALLET-SERVICE
-          predicates:
-            - Path=/wallet/**
+            - id: auth-service
+              uri: lb://AUTH-SERVICE
+              predicates:
+                - Path=/auth/**
+
+            - id: wallet-service
+              uri: lb://WALLET-SERVICE
+              predicates:
+                - Path=/wallet/**
 
 eureka:
   client:
